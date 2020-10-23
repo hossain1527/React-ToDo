@@ -17,6 +17,16 @@ function TodoItem() {
     });
     setInputText(" ");
   };
+
+  const deletTodoItem = (id) => {
+    console.log("deleted");
+
+    setNewText((prevText) => {
+      return prevText.filter((arrayItem, index) => {
+        return index !== id;
+      });
+    });
+  };
   return (
     <div className="main-container">
       <div className="center-container">
@@ -33,7 +43,14 @@ function TodoItem() {
         <br />
         <ul>
           {newText.map((value, index) => {
-            return <ListItems key={index} text={value} />;
+            return (
+              <ListItems
+                key={index}
+                text={value}
+                id={index}
+                onSelect={deletTodoItem}
+              />
+            );
           })}
         </ul>
       </div>
